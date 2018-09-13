@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 
-export default function (data) {
+const graph = (data) => {
+    d3.select("svg").selectAll("*").remove();
     var svg = d3.select("svg"),
         margin = {top: 20, right: 80, bottom: 30, left: 50},
         width = svg.attr("width") - margin.left - margin.right,
@@ -112,5 +113,13 @@ export default function (data) {
         return d;
     }
 
-}
-;
+};
+
+export default () => {
+    jQuery.ajax({
+        url: '/api/data',
+        cache: false
+    }).done((result) => {
+        graph(result);
+    });
+};
