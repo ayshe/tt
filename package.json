@@ -6,6 +6,7 @@
   "dependencies": {
     "babel-core": "^6.26.0",
     "body-parser": "^1.18.2",
+    "d3": "^4.12.2",
     "express": "^4.16.2",
     "npm-run-all": "^4.1.2"
   },

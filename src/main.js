@@ -1,3 +1,5 @@
+import graph from "./graph";
+
 const ping = () => {
     jQuery.ajax({
         url: '/api/version',
@@ -18,12 +20,32 @@ jQuery(function () {
     setInterval(ping, 3000);
 });
 
+let matches = -1;
+
 var players = {
-    "nil": 1400,
-    "grf": 900,
-    "jas": 1300,
-    "fxa": 1000,
-    "rob": 1100
+    'Nilotpal': {score: 1000, wins: 0, losses: 0},
+    'Glen': {score: 1000, wins: 0, losses: 0},
+    'Arnaud': {score: 1000, wins: 0, losses: 0},
+    'Luke': {score: 1000, wins: 0, losses: 0},
+    'Zdenek': {score: 1000, wins: 0, losses: 0},
+    'Gareth': {score: 1000, wins: 0, losses: 0},
+    'Jaskaran': {score: 1000, wins: 0, losses: 0},
+    'Frankie': {score: 1000, wins: 0, losses: 0},
+    'Robert': {score: 1000, wins: 0, losses: 0}
+};
+
+let history = {};
+
+
+const log = (players) => {
+    matches++;
+    let line = {match: matches};
+    Object.keys(players).forEach(function (key) {
+        if (!history.hasOwnProperty(key)) {
+            history[key] = {id: key, values: []};
+        }
+        history[key].values.push({match: matches, score: players[key].score, wins: players[key].wins, losses: players[key].losses});
+    });
 };
 
 const difference = (a, b) => {
@@ -86,87 +108,110 @@ const game = (a, b, won) => {
     }
 };
 
-// console.log(game(1000, 1000, true));
-// console.log(game(1025, 1000, true));
-// console.log(game(1050, 1000, true));
-// console.log(game(1075, 1000, true));
-// console.log(game(1100, 1000, true));
-// console.log(game(1125, 1000, true));
-// console.log(game(1150, 1000, true));
-// console.log(game(1175, 1000, true));
-// console.log(game(1200, 1000, true));
-// console.log(game(1225, 1000, true));
-// console.log(game(1250, 1000, true));
-
-// console.log(game(1000, 1000, false));
-// console.log(game(1025, 1000, false));
-// console.log(game(1050, 1000, false));
-// console.log(game(1075, 1000, false));
-// console.log(game(1100, 1000, false));
-// console.log(game(1125, 1000, false));
-// console.log(game(1150, 1000, false));
-// console.log(game(1175, 1000, false));
-// console.log(game(1200, 1000, false));
-// console.log(game(1225, 1000, false));
-// console.log(game(1250, 1000, false));
-
-// console.log(game([1000, 1000], [1000, 1000], true));
-// console.log(game([1250, 1000], [1000, 1000], true));
-// console.log(game([1500, 1000], [1000, 1000], true));
-
-// console.log(game([1000, 1000], [1000, 1000], false));
-// console.log(game([1250, 1000], [1000, 1000], false));
-// console.log(game([1500, 1000], [1000, 1000], false));
-
-const update = (players, player1, player2, outcome) => {
+const update = (players, player1, player2, won, outcome) => {
     if (Array.isArray(player1) && Array.isArray(player2)) {
-        players[player1[0]] = players[player1[0]] + outcome['a'];
-        players[player1[1]] = players[player1[1]] + outcome['a'];
-        players[player2[0]] = players[player2[0]] + outcome['b'];
-        players[player2[1]] = players[player2[1]] + outcome['b'];
+        players[player1[0]] = {
+            score: players[player1[0]].score + outcome['a'],
+            wins: players[player1[0]].wins + (won ? 1 : 0),
+            losses: players[player1[0]].losses + (won ? 0 : 1)
+        };
+        players[player1[1]] = {
+            score: players[player1[1]].score + outcome['a'],
+            wins: players[player1[1]].wins + (won ? 1 : 0),
+            losses: players[player1[1]].losses + (won ? 0 : 1)
+        };
+
+        players[player2[0]] = {
+            score: players[player2[0]].score + outcome['b'],
+            wins: players[player2[0]].wins + (won ?  0 : 1),
+            losses: players[player2[0]].losses + (won ? 1 : 0)
+        };
+        players[player2[1]] = {
+            score: players[player2[1]].score + outcome['b'],
+            wins: players[player2[1]].wins + (won ? 0 : 1),
+            losses: players[player2[1]].losses + (won ? 1 : 0)
+        };
     } else {
-        players[player1] = players[player1] + outcome['a'];
-        players[player2] = players[player2] + outcome['b'];
+        players[player1] = {
+            score: players[player1].score + outcome['a'],
+            wins: players[player1].wins + (won ?  1 : 0),
+            losses: players[player1].losses + (won ? 0 : 1)
+        };
+        players[player2] = {
+            score: players[player2].score + outcome['b'],
+            wins: players[player2].wins + (won ? 0 : 1),
+            losses: players[player2].losses + (won ? 1 : 0)
+        };
     }
+    log(players);
 };
 
-const match = (player1, player2) => {
+const match = (player1, player2, won) => {
     if (Array.isArray(player1) && Array.isArray(player2)) {
-        let a = players[player1[0]];
-        let b = players[player1[1]];
-        let c = players[player2[0]];
-        let d = players[player2[1]];
-        let won = Math.random() >= 0.5;
+        let a = players[player1[0]].score;
+        let b = players[player1[1]].score;
+        let c = players[player2[0]].score;
+        let d = players[player2[1]].score;
         let outcome = game([a, b], [c, d], won);
         console.log(player1[0] + " (" + a + ") and " + player1[1] + " (" + b + ") [[" + parseInt(a + b, 10) + "]] played " + player2[0] + " (" + c + ") and " + player2[1] + " (" + d + ") [[" + parseInt(c + d, 10) + "]] and they " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
-        update(players, player1, player2, outcome);
-        a = players[player1[0]];
-        b = players[player1[1]];
-        c = players[player2[0]];
-        d = players[player2[1]];
+        update(players, player1, player2, won, outcome);
+        a = players[player1[0]].score;
+        b = players[player1[1]].score;
+        c = players[player2[0]].score;
+        d = players[player2[1]].score;
         console.log("New ranks: " + player1[0] + " (" + a + "), " + player1[1] + " (" + b + "), " + player2[0] + " (" + c + "), " + player2[1] + " (" + d + ")");
     } else {
-        let a = players[player1];
-        let b = players[player2];
-        let won = Math.random() >= 0.5;
+        let a = players[player1].score;
+        let b = players[player2].score;
         let outcome = game(a, b, won);
-        console.log(player1 + " (" + a + ") played " + player2 + " (" + b + ") and " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
-        update(players, player1, player2, outcome);
-        a = players[player1];
-        b = players[player2];
+        console.log(player1 + " (" + a + ") played " + player2 + " (" + b.score + ") and " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
+        update(players, player1, player2, won, outcome);
+        a = players[player1].score;
+        b = players[player2].score;
         console.log("New ranks: " + player1 + " (" + a + ")," + player2 + " (" + b + ")");
 
     }
 };
 
-match('nil', 'jas');
-match('nil', 'jas');
-match('nil', 'rob');
-match('fxa', 'rob');
-match('grf', 'rob');
-match('nil', 'rob');
-match('nil', 'rob');
-match('nil', 'fxa');
+log(players);
 
-match(['nil', 'jas'], ['grf', 'rob']);
-match(['nil', 'grf'], ['fxa', 'rob']);
+
+match('Arnaud', 'Frankie', true);
+match('Arnaud', 'Frankie', true);
+match('Arnaud', 'Frankie', true);
+match(['Zdenek', 'Frankie'], ['Robert', 'Luke'], true);
+match('Zdenek', 'Frankie', true);
+match('Zdenek', 'Frankie', true);
+match('Zdenek', 'Frankie', true);
+match(['Luke', 'Frankie'], ['Robert', 'Gareth'], false);
+match(['Luke', 'Frankie'], ['Robert', 'Gareth'], true);
+match(['Luke', 'Frankie'], ['Robert', 'Gareth'], false);
+match('Robert', 'Frankie', false);
+
+// match('Nilotpal', 'Jaskaran', true);
+// match('Nilotpal', 'Jaskaran', false);
+// match('Nilotpal', 'Robert', true);
+// match('Frankie', 'Robert', false);
+// match('Frankie', 'Zdenek', false);
+// match('Gareth', 'Robert', true);
+// match('Arnaud', 'Robert', true);
+// match('Nilotpal', 'Robert', true);
+// match('Frankie', 'Robert', true);
+// match('Nilotpal', 'Frankie', true);
+// match('Nilotpal', 'Arnaud', true);
+//
+// match(['Nilotpal', 'Jaskaran'], ['Gareth', 'Robert'], true);
+// match(['Nilotpal', 'Gareth'], ['Frankie', 'Robert'], true);
+// match(['Nilotpal', 'Glen'], ['Frankie', 'Robert'], true);
+// match(['Zdenek', 'Gareth'], ['Glen', 'Jaskaran'], false);
+// match(['Glen', 'Gareth'], ['Robert', 'Jaskaran'], false);
+
+console.log(history);
+
+let data = [];
+
+Object.keys(history).forEach(function (key) {
+    data.push(history[key]);
+});
+
+graph(data);

@@ -6,4 +6,13 @@ body {
     font-family: Sans-serif;
     font-size: 11px;
 }
+.axis--x path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
 </style>`;
