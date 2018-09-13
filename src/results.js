@@ -1,5 +1,4 @@
 import graph from "./graph";
-import players from "./players";
 const ipAddressHtml = jQuery('.ipaddress');
 
 const ping = () => {
@@ -16,6 +15,20 @@ const ping = () => {
         }
     });
 };
+const matchcount = () => {
+    jQuery.ajax({
+        url: '/api/matches',
+        cache: false
+    }).done((result) => {
+        if (!window.appMatches) {
+            window.appMatches = result.matches;
+        } else {
+            if (window.appMatches != result.matches) {
+                graph();
+            }
+        }
+    });
+};
 const ipAddress = () => {
     jQuery.ajax({
         url: '/api/ipaddress',
@@ -25,20 +38,12 @@ const ipAddress = () => {
     });
 };
 
-const playertiles = function () {
-    jQuery.ajax({
-        url: '/api/players',
-        cache: false
-    }).done((result) => {
-        players(result);
-    });
-};
-
 jQuery(function () {
     ping();
     setInterval(ping, 3000);
+    matchcount();
+    setInterval(matchcount, 3000);
     graph();
-    playertiles();
     ipAddress();
     setInterval(ipAddress, 3600000);
 });

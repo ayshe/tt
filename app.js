@@ -1,9 +1,12 @@
 import express from "express";
 import bodyParser from "body-parser";
-import template from "./templates/main";
+import maintemplate from "./templates/main";
+import resultstemplate from "./templates/results";
 import {points} from "./src/rules.js";
+import ip from "ip";
 
 const version = Math.random().toString(36).substring(8);
+const ipAddress = ip.address();
 
 const app = express();
 app.use(express.static('public'));
@@ -43,6 +46,9 @@ const log = (players) => {
             wins: players[key].wins,
             losses: players[key].losses
         });
+        if (history[key].values.length > 15) {
+            history[key].values = history[key].values.slice(history[key].values.length - 15);
+        }
     });
 };
 
@@ -156,10 +162,23 @@ match('Robert', 'Frankie', false);
 match('Robert', 'Frankie', true);
 match(['Jaskaran', 'Robert'], ['Frankie', 'Zdenek'], true);
 match(['Jaskaran', 'Robert'], ['Frankie', 'Zdenek'], false);
+match('Jaskaran', 'Zdenek', true);
+
+app.get('/api/ipaddress', function (req, res) {
+    res.send({
+        ipAddress
+    });
+});
 
 app.get('/api/version', function (req, res) {
     res.send({
         version
+    });
+});
+
+app.get('/api/matches', function (req, res) {
+    res.send({
+        matches
     });
 });
 
@@ -169,7 +188,6 @@ app.get('/api/players', function (req, res) {
 
 app.post('/api/result', function (reg, res) {
     const result = reg.body.data;
-    console.log(result);
     if (result.length == 2) {
         match(result[0], result[1], true);
     }
@@ -184,7 +202,11 @@ app.get('/api/data', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-    res.send(template)
+    res.send(maintemplate)
+});
+
+app.get('/results', function (req, res) {
+    res.send(resultstemplate)
 });
 
 app.listen(3020, function () {

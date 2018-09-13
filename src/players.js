@@ -1,5 +1,4 @@
 import {points} from "./rules.js";
-import graph from "./graph";
 
 const container = jQuery('.players');
 const vs = jQuery('.versus');
@@ -15,7 +14,6 @@ const result = (data) => {
         dataType: "json",
         cache: false
     }).done(function(result)  {
-        graph();
         draw(result);
         vs.html('');
         jQuery('active-player').attr('class', 'class', 'col l2 s4 card-panel center-align teal lighten-5');
@@ -74,7 +72,7 @@ const matchup = (player1, player2, win, upset, onwin, onupset) => {
 const draw = (data) => {
     container.html('').addClass('row');
     data.forEach(function (player) {
-        var panel = jQuery(document.createElement('div')).attr('class', 'col l2 s4 card-panel center-align teal lighten-5').append(jQuery(document.createElement('h6')).text(player.name + " (" + player.score + ")"));
+        var panel = jQuery(document.createElement('div')).attr('class', 'col l2 s4 card-panel center-align teal lighten-5 player').append(jQuery(document.createElement('h6')).text(player.name + " (" + player.score + ")"));
         panel.on('click', function (e) {
             e.preventDefault();
             jQuery(this).toggleClass('lighten-5');
