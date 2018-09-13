@@ -9,6 +9,7 @@ export default `
     <div class="container">
         <div class="players"></div>
         <div class="versus"></div>
+        <div class="matchlog"></div>
         <div class="ipaddress"></div>
 
         <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>

@@ -31,6 +31,7 @@ let players = {
 let matches = -1;
 
 let history = {};
+let matchlog = [];
 
 
 const log = (players) => {
@@ -105,23 +106,26 @@ const match = (player1, player2, won) => {
         let c = players[player2[0]].score;
         let d = players[player2[1]].score;
         let outcome = game([a, b], [c, d], won);
-        console.log(player1[0] + " (" + a + ") and " + player1[1] + " (" + b + ") [[" + parseInt(a + b, 10) + "]] played " + player2[0] + " (" + c + ") and " + player2[1] + " (" + d + ") [[" + parseInt(c + d, 10) + "]] and they " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
+        matchlog.push(player1[0] + " (" + a + ") and " + player1[1] + " (" + b + ") [[" + parseInt(a + b, 10) + "]] played " + player2[0] + " (" + c + ") and " + player2[1] + " (" + d + ") [[" + parseInt(c + d, 10) + "]] and they " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
         update(players, player1, player2, won, outcome);
         a = players[player1[0]].score;
         b = players[player1[1]].score;
         c = players[player2[0]].score;
         d = players[player2[1]].score;
-        console.log("New ranks: " + player1[0] + " (" + a + "), " + player1[1] + " (" + b + "), " + player2[0] + " (" + c + "), " + player2[1] + " (" + d + ")");
+        //console.log("New ranks: " + player1[0] + " (" + a + "), " + player1[1] + " (" + b + "), " + player2[0] + " (" + c + "), " + player2[1] + " (" + d + ")");
     } else {
         let a = players[player1].score;
         let b = players[player2].score;
         let outcome = game(a, b, won);
-        console.log(player1 + " (" + a + ") played " + player2 + " (" + b + ") and " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
+        matchlog.push(player1 + " (" + a + ") played " + player2 + " (" + b + ") and " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
         update(players, player1, player2, won, outcome);
         a = players[player1].score;
         b = players[player2].score;
-        console.log("New ranks: " + player1 + " (" + a + ")," + player2 + " (" + b + ")");
+        //console.log("New ranks: " + player1 + " (" + a + ")," + player2 + " (" + b + ")");
 
+    }
+    if (matchlog.length > 15) {
+        matchlog = matchlog.slice(matchlog.length - 15);
     }
 };
 
@@ -199,6 +203,10 @@ app.post('/api/result', function (reg, res) {
 
 app.get('/api/data', function (req, res) {
     res.send(getHistory());
+});
+
+app.get('/api/matchlog', function (req, res) {
+    res.send({matches, matchlog});
 });
 
 app.get('/', function (req, res) {

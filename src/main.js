@@ -1,6 +1,8 @@
 import graph from "./graph";
 import players from "./players";
+import matchlog from "./matchlog";
 const ipAddressHtml = jQuery('.ipaddress');
+const matchlogHtml = jQuery('.matchlog');
 
 const ping = () => {
     jQuery.ajax({
@@ -39,6 +41,7 @@ jQuery(function () {
     setInterval(ping, 3000);
     graph();
     playertiles();
+    matchlog();
     ipAddress();
     setInterval(ipAddress, 3600000);
 });

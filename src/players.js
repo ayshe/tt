@@ -1,4 +1,5 @@
 import {points} from "./rules.js";
+import matchlog from "./matchlog";
 
 const container = jQuery('.players');
 const vs = jQuery('.versus');
@@ -15,6 +16,7 @@ const result = (data) => {
         cache: false
     }).done(function(result)  {
         draw(result);
+        matchlog();
         vs.html('');
         jQuery('active-player').attr('class', 'class', 'col l2 s4 card-panel center-align teal lighten-5');
         players = {};
