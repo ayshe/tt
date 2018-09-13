@@ -4,9 +4,9 @@ export default `
     <head>
         <title>TT</title>
         ${styles}
-    </head>
+    </head
     <body>
-    <div class="container">
+    <div>
         <svg width="1280" height="500"></svg>
         <div class="ipaddress"></div>
 
