@@ -88,25 +88,26 @@ const graph = (data) => {
             return "translate(" + x(d.value.match) + "," + y(d.value.score) + ")";
         })
         .attr("x", 3)
-        .attr("dy", "-0.3em")
+        .attr("dy", "0.35em")
+        //.attr("dy", "-0.3em")
         .style("font", "10px sans-serif")
         .text(function (d) {
             return (d.value.wins + d.value.losses) == 0 ? '' : d.id + " (" + d.value.score + ")";
         });
 
-    player.append("text")
-        .datum(function (d) {
-            return {id: d.id, value: d.values[d.values.length - 1], wins: d.values[d.values.length - 1].wins, losses: d.values[d.values.length - 1].losses};
-        })
-        .attr("transform", function (d) {
-            return "translate(" + x(d.value.match) + "," + y(d.value.score) + ")";
-        })
-        .attr("x", 3)
-        .attr("dy", "1em")
-        .style("font", "10px sans-serif")
-        .text(function (d) {
-            return (d.value.wins + d.value.losses) == 0 ? '' : "P: " + (d.value.wins + d.value.losses) + " W: " + Math.round(d.value.wins * 100 / (d.value.wins + d.value.losses)) + '%';
-        });
+    // player.append("text")
+    //     .datum(function (d) {
+    //         return {id: d.id, value: d.values[d.values.length - 1], wins: d.values[d.values.length - 1].wins, losses: d.values[d.values.length - 1].losses};
+    //     })
+    //     .attr("transform", function (d) {
+    //         return "translate(" + x(d.value.match) + "," + y(d.value.score) + ")";
+    //     })
+    //     .attr("x", 3)
+    //     .attr("dy", "1em")
+    //     .style("font", "10px sans-serif")
+    //     .text(function (d) {
+    //         return (d.value.wins + d.value.losses) == 0 ? '' : "P: " + (d.value.wins + d.value.losses) + " W: " + Math.round(d.value.wins * 100 / (d.value.wins + d.value.losses)) + '%';
+    //     });
 
     function type(d, _, columns) {
         for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];

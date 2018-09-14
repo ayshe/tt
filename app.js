@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import maintemplate from "./templates/main";
 import resultstemplate from "./templates/results";
 import {points} from "./src/rules.js";
+import {displaysize} from "./src/constants.js";
 import ip from "ip";
 
 const version = Math.random().toString(36).substring(8);
@@ -14,18 +15,19 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 let players = {
-    'Nilotpal': {score: 1000, wins: 0, losses: 0},
-    'Glen': {score: 1000, wins: 0, losses: 0},
-    'Arnaud': {score: 1000, wins: 0, losses: 0},
-    'Luke': {score: 1000, wins: 0, losses: 0},
-    'Zdenek': {score: 1000, wins: 0, losses: 0},
-    'Gareth': {score: 1000, wins: 0, losses: 0},
-    'Jaskaran': {score: 1000, wins: 0, losses: 0},
-    'Frankie': {score: 1000, wins: 0, losses: 0},
-    'AdamK': {score: 1000, wins: 0, losses: 0},
-    'AdamA': {score: 1000, wins: 0, losses: 0},
-    'Andrew': {score: 1000, wins: 0, losses: 0},
-    'Robert': {score: 1000, wins: 0, losses: 0}
+    'Nilotpal': {score: 0, wins: 0, losses: 0},
+    'Glen': {score: 0, wins: 0, losses: 0},
+    'Arnaud': {score: 0, wins: 0, losses: 0},
+    'Luke': {score: 0, wins: 0, losses: 0},
+    'Zdenek': {score: 0, wins: 0, losses: 0},
+    'Gareth': {score: 0, wins: 0, losses: 0},
+    'Jaskaran': {score: 0, wins: 0, losses: 0},
+    'Frankie': {score: 0, wins: 0, losses: 0},
+    'AdamK': {score: 0, wins: 0, losses: 0},
+    'AdamA': {score: 0, wins: 0, losses: 0},
+    'AndrewF': {score: 0, wins: 0, losses: 0},
+    'AndrewN': {score: 0, wins: 0, losses: 0},
+    'Robert': {score: 0, wins: 0, losses: 0}
 };
 
 let matches = -1;
@@ -47,8 +49,8 @@ const log = (players) => {
             wins: players[key].wins,
             losses: players[key].losses
         });
-        if (history[key].values.length > 15) {
-            history[key].values = history[key].values.slice(history[key].values.length - 15);
+        if (history[key].values.length > displaysize) {
+            history[key].values = history[key].values.slice(history[key].values.length - displaysize);
         }
     });
 };
@@ -164,9 +166,21 @@ match('Robert', 'Frankie', false);
 match(['AdamK', 'Robert'], ['Frankie', 'Jaskaran'], true);
 match('Robert', 'Frankie', false);
 match('Robert', 'Frankie', true);
+
 match(['Jaskaran', 'Robert'], ['Frankie', 'Zdenek'], true);
 match(['Jaskaran', 'Robert'], ['Frankie', 'Zdenek'], false);
 match('Jaskaran', 'Zdenek', true);
+match(['Frankie', 'Zdenek'], ['Gareth', 'AndrewN'], true);
+match(['Frankie', 'Zdenek'], ['Gareth', 'AndrewN'], false);
+match(['Frankie', 'Zdenek'], ['Gareth', 'AndrewN'], true);
+match(['Frankie', 'AndrewN'], ['Gareth', 'Zdenek'], true);
+match(['Frankie', 'AndrewN'], ['Gareth', 'Zdenek'], true);
+match('Zdenek', 'Glen', false);
+match('Arnaud', 'Glen', true);
+match('Arnaud', 'Glen', false);
+match('Gareth', 'Robert', false);
+match('Gareth', 'Robert', true);
+match('Gareth', 'Robert', true);
 
 app.get('/api/ipaddress', function (req, res) {
     res.send({

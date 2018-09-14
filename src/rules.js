@@ -15,31 +15,31 @@ const isGreaterThan = (a, b) => {
 };
 
 const winPoints = (diff) => {
-    if (diff < 25) return 10;
-    if (diff < 50) return 9;
-    if (diff < 75) return 8;
-    if (diff < 100) return 7;
-    if (diff < 125) return 6;
-    if (diff < 150) return 5;
-    if (diff < 175) return 4;
-    if (diff < 200) return 3;
-    if (diff < 225) return 2;
-    if (diff < 250) return 1;
+    if (diff <= 12) return 8;
+    if (diff <= 37) return 7;
+    if (diff <= 62) return 6;
+    if (diff <= 87) return 5;
+    if (diff <= 112) return 4;
+    if (diff <= 137) return 3;
+    if (diff <= 162) return 2;
+    if (diff <= 187) return 2;
+    if (diff <= 212) return 1;
+    if (diff <= 237) return 1;
     return 0;
 };
 
 const upsetPoints = (diff) => {
-    if (diff < 25) return 10;
-    if (diff < 50) return 12;
-    if (diff < 75) return 14;
-    if (diff < 100) return 16;
-    if (diff < 125) return 19;
-    if (diff < 150) return 22;
-    if (diff < 175) return 26;
-    if (diff < 200) return 31;
-    if (diff < 225) return 37;
-    if (diff < 250) return 44;
-    return 52;
+    if (diff <= 12) return 8;
+    if (diff <= 37) return 10;
+    if (diff <= 62) return 13;
+    if (diff <= 87) return 16;
+    if (diff <= 112) return 20;
+    if (diff <= 137) return 25;
+    if (diff <= 162) return 30;
+    if (diff <= 187) return 35;
+    if (diff <= 212) return 40;
+    if (diff <= 237) return 45;
+    return 50;
 };
 
 export const points = (a, b) => {

@@ -60,9 +60,9 @@ const togglePlayer = (player) => {
 
 const matchup = (player1, player2, win, upset, onwin, onupset) => {
     const players = jQuery(document.createElement('div')).addClass('row');
-    players.append(jQuery(document.createElement('div')).attr('class', 'card-panel center-align red lighten-4 col s5').append(jQuery(document.createElement('h4')).text(player1)));
+    players.append(jQuery(document.createElement('div')).attr('class', 'card-panel center-align red lighten-4 col s5').append(jQuery(document.createElement('h4')).text(player1)).on('click', onwin));
     players.append(jQuery(document.createElement('div')).attr('class', 'card-panel center-align col s2').append(jQuery(document.createElement('h4')).text('vs')));
-    players.append(jQuery(document.createElement('div')).attr('class', 'card-panel center-align blue lighten-4 col s5').append(jQuery(document.createElement('h4')).text(player2)));
+    players.append(jQuery(document.createElement('div')).attr('class', 'card-panel center-align blue lighten-4 col s5').append(jQuery(document.createElement('h4')).text(player2)).on('click', onupset));
     vs.append(players);
     const buttons = jQuery(document.createElement('div')).addClass('row');
     buttons.append(jQuery(document.createElement('div')).attr('class', 'card-panel center-align red lighten-5 col s5').append(jQuery(document.createElement('h5')).text("(" + win + " points for win)")).on('click', onwin));
