@@ -181,6 +181,22 @@ match('Arnaud', 'Glen', false);
 match('Gareth', 'Robert', false);
 match('Gareth', 'Robert', true);
 match('Gareth', 'Robert', true);
+match(['Jaskaran', 'Nilotpal'], ['AdamK', 'AndrewN'], true);
+match(['Jaskaran', 'Nilotpal'], ['AdamK', 'AndrewN'], false);
+match(['Jaskaran', 'Nilotpal'], ['AdamK', 'AndrewN'], true);
+match('Frankie', 'Robert', false);
+match('Frankie', 'Robert', false);
+match('Frankie', 'Robert', true);
+match('Gareth', 'Zdenek', false);
+match(['Jaskaran', 'Frankie'], ['Zdenek', 'Gareth'], true);
+match(['Jaskaran', 'Frankie'], ['Zdenek', 'Gareth'], false);
+match(['Jaskaran', 'Frankie'], ['Zdenek', 'Gareth'], true);
+
+match('Zdenek', 'Robert', true);
+match('Zdenek', 'Robert', true);
+match('Zdenek', 'Robert', false);
+match('Zdenek', 'Robert', true);
+match('Zdenek', 'Robert', true);
 
 app.get('/api/ipaddress', function (req, res) {
     res.send({

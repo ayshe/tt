@@ -7,7 +7,7 @@ export default `
     </head
     <body>
     <div>
-        <svg width="1280" height="500"></svg>
+        <svg width="1280" height="700"></svg>
         <div class="ipaddress"></div>
 
         <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
