@@ -1,12 +1,14 @@
 import styles from "./styles";
+import {season, title} from "../src/constants.js"
 export default `
 <html>
     <head>
-        <title>TT</title>
+        <title>TT Season ${season}: ${title}</title>
         ${styles}
     </head
     <body>
     <div>
+    <h1>TT Season ${season}: ${title}</h1>
         <svg width="1280" height="700"></svg>
         <div class="ipaddress"></div>
 
