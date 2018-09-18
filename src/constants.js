@@ -1,1 +1,1 @@
-export const displaysize = 1000;
+export const displaysize = 15;

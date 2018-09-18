@@ -1,6 +1,6 @@
 const difference = (a, b) => {
     if (Array.isArray(a) && Array.isArray(b)) {
-        return (a[0] + a[1] - b[0] - b[1]) / 2;
+        return Math.abs((a[0] + a[1] - b[0] - b[1])) / 2;
     } else {
         return a - b;
     }

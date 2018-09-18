@@ -22,6 +22,8 @@ let players = {
     'Zdenek': {score: 0, wins: 0, losses: 0},
     'Gareth': {score: 0, wins: 0, losses: 0},
     'Jaskaran': {score: 0, wins: 0, losses: 0},
+    'Kevin': {score: 0, wins: 0, losses: 0},
+    'Peter': {score: 0, wins: 0, losses: 0},
     'Frankie': {score: 0, wins: 0, losses: 0},
     'AdamK': {score: 0, wins: 0, losses: 0},
     'AdamA': {score: 0, wins: 0, losses: 0},
@@ -30,10 +32,26 @@ let players = {
     'Robert': {score: 0, wins: 0, losses: 0}
 };
 
+const blacklist = [
+    'Frankie',
+    'AdamK',
+    'AdamA'
+];
+
 let matches = -1;
 
 let history = {};
 let matchlog = [];
+
+const player = (player) => {
+    let person = player;
+    Object.keys(blacklist).forEach(function (key) {
+        if (player == blacklist[key]) {
+            person = '(ANON)';
+        }
+    });
+    return person;
+};
 
 
 const log = (players) => {
@@ -108,7 +126,7 @@ const match = (player1, player2, won) => {
         let c = players[player2[0]].score;
         let d = players[player2[1]].score;
         let outcome = game([a, b], [c, d], won);
-        matchlog.push(player1[0] + " (" + a + ") and " + player1[1] + " (" + b + ") [[" + parseInt(a + b, 10) + "]] played " + player2[0] + " (" + c + ") and " + player2[1] + " (" + d + ") [[" + parseInt(c + d, 10) + "]] and they " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
+        matchlog.push(player(player1[0]) + " (" + a + ") and " + player(player1[1]) + " (" + b + ") [[" + parseInt(a + b, 10) + "]] played " + player(player2[0]) + " (" + c + ") and " + player(player2[1]) + " (" + d + ") [[" + parseInt(c + d, 10) + "]] and they " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
         update(players, player1, player2, won, outcome);
         a = players[player1[0]].score;
         b = players[player1[1]].score;
@@ -119,7 +137,7 @@ const match = (player1, player2, won) => {
         let a = players[player1].score;
         let b = players[player2].score;
         let outcome = game(a, b, won);
-        matchlog.push(player1 + " (" + a + ") played " + player2 + " (" + b + ") and " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
+        matchlog.push(player(player1) + " (" + a + ") played " + player(player2) + " (" + b + ") and " + (won ? "won" : "lost") + ", for " + outcome['a'] + " points");
         update(players, player1, player2, won, outcome);
         a = players[player1].score;
         b = players[player2].score;
@@ -135,7 +153,15 @@ const getHistory = () => {
     let data = [];
 
     Object.keys(history).forEach(function (key) {
-        data.push(history[key]);
+        let send = true;
+        Object.keys(blacklist).forEach(function (id) {
+            if (key == blacklist[id]) {
+                send = false;
+            }
+        });
+        if (send) {
+            data.push(history[key]);
+        }
     });
 
     return data;
@@ -144,7 +170,13 @@ const getHistory = () => {
 const getPlayers = () => {
     let data = [];
     Object.keys(players).forEach(function (key) {
-        data.push({name: key, score: players[key].score});
+        let unscored = false;
+        Object.keys(blacklist).forEach(function (id) {
+            if (key == blacklist[id]) {
+                unscored = true;
+            }
+        });
+        data.push({name: key, score: unscored ? null : players[key].score});
     });
 
     return data;
@@ -197,6 +229,21 @@ match('Zdenek', 'Robert', true);
 match('Zdenek', 'Robert', false);
 match('Zdenek', 'Robert', true);
 match('Zdenek', 'Robert', true);
+match('Zdenek', 'Arnaud', false);
+match('Kevin', 'Frankie', false);
+match('Zdenek', 'Arnaud', false);
+
+match('Frankie', 'Luke', true);
+match('Frankie', 'Luke', false);
+match('Frankie', 'Luke', true);
+match('Gareth', 'Luke', true);
+match('Gareth', 'Luke', true);
+match(['Gareth', 'Zdenek'], ['Luke', 'Arnaud'], false);
+match(['Gareth', 'Arnaud'], ['Luke', 'Zdenek'], true);
+match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
+match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
+match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
+
 
 app.get('/api/ipaddress', function (req, res) {
     res.send({
