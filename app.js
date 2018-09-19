@@ -35,7 +35,11 @@ let players = {
 const blacklist = [
     'Frankie',
     'AdamK',
-    'AdamA'
+    'AdamA',
+    'AndrewN',
+    'Kevin',
+    'Peter',
+    'AndrewF'
 ];
 
 let matches = -1;
@@ -246,6 +250,8 @@ match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
 
 match(['Luke', 'Gareth'], ['Jaskaran', 'Robert'], false);
 match(['Luke', 'Gareth'], ['Jaskaran', 'Robert'], false);
+match(['Nilotpal', 'Gareth'], ['Arnaud', 'Zdenek'], true);
+match(['Nilotpal', 'Gareth'], ['Arnaud', 'Zdenek'], true);
 
 
 app.get('/api/ipaddress', function (req, res) {
