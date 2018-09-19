@@ -36,7 +36,10 @@ let players = {
 const blacklist = [
     'Frankie',
     'AdamK',
+    'AdamA',
     'AndrewN',
+    'AndrewF',
+    'Martin',
     'Kevin',
     'Peter',
 ];
