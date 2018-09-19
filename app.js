@@ -256,6 +256,8 @@ match('Martin', 'Gareth', false);
 match('Martin', 'Gareth', false);
 match(['Martin', 'AdamA'], ['Gareth', 'AndrewF'], false);
 match(['Martin', 'AdamA'], ['Gareth', 'AndrewF'], false);
+match('Zdenek', 'Gareth', true);
+match('Zdenek', 'Gareth', true);
 
 
 app.get('/api/ipaddress', function (req, res) {
