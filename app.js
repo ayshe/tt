@@ -30,7 +30,8 @@ let players = {
     'AndrewF': {score: 0, wins: 0, losses: 0},
     'AndrewN': {score: 0, wins: 0, losses: 0},
     'Robert': {score: 0, wins: 0, losses: 0},
-    'Martin': {score: 0, wins: 0, losses: 0}
+    'Martin': {score: 0, wins: 0, losses: 0},
+    'Kristina': {score: 0, wins: 0, losses: 0}
 };
 
 const blacklist = [
@@ -40,7 +41,6 @@ const blacklist = [
     'AndrewN',
     'AndrewF',
     'Martin',
-    'Kevin',
     'Peter',
 ];
 
@@ -239,6 +239,10 @@ match('Zdenek', 'Arnaud', false);
 match('Kevin', 'Frankie', false);
 match('Zdenek', 'Arnaud', false);
 
+match('Frankie', 'Kristina', true);
+match('Frankie', 'Kristina', false);
+match('Frankie', 'Kristina', true);
+
 match('Frankie', 'Luke', true);
 match('Frankie', 'Luke', false);
 match('Frankie', 'Luke', true);
@@ -266,6 +270,17 @@ match('Zdenek', 'Robert', true);
 match('Zdenek', 'Robert', true);
 match('Zdenek', 'Robert', true);
 match('Zdenek', 'Robert', true);
+
+match('Zdenek', 'Gareth', true);
+match(['Zdenek', 'Gareth'], ['Frankie', 'Nilotpal'], false);
+match(['Jaskaran', 'Zdenek'], ['Nilotpal', 'Gareth'], true);
+match(['Jaskaran', 'Zdenek'], ['Nilotpal', 'Gareth'], false);
+match(['Jaskaran', 'Zdenek'], ['Nilotpal', 'Gareth'], true);
+match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
+match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
+match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
+match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
+
 
 
 app.get('/api/ipaddress', function (req, res) {
