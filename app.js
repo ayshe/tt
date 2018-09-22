@@ -302,9 +302,9 @@ match(['Arnaud', 'Kevin'], ['Zdenek', 'Frankie'], false);
 match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
 match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
 match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
-match('Robert', 'Zdenek'], true);
-match('Robert', 'Zdenek'], false);
-match('Robert', 'Zdenek'], false);
+match('Robert', 'Zdenek', true);
+match('Robert', 'Zdenek', false);
+match('Robert', 'Zdenek', false);
 
 
 app.get('/api/ipaddress', function (req, res) {
