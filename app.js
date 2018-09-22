@@ -39,7 +39,6 @@ const blacklist = [
     'AdamK',
     'AdamA',
     'AndrewN',
-    'AndrewF',
     'Martin',
     'Peter',
 ];
@@ -280,7 +279,32 @@ match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
 match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
 match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
 match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
+match('Nilotpal', 'Gareth', true);
 
+match('Luke', 'Robert', true);
+match('Luke', 'Robert', false);
+match('Luke', 'Robert', true);
+match('Luke', 'Robert', true);
+match('Luke', 'Robert', true);
+match('Luke', 'Robert', true);
+match('Luke', 'Robert', false);
+match('Luke', 'Robert', true);
+
+match(['Robert', 'Nilotpal'], ['Luke', 'Jaskaran'], false);
+match(['Robert', 'Nilotpal'], ['Luke', 'Jaskaran'], true);
+match(['Frankie', 'AndrewF'], ['Gareth', 'Zdenek'], false);
+match(['Frankie', 'AndrewF'], ['Gareth', 'Zdenek'], true);
+match('AndrewF', 'Gareth', true);
+match('AndrewF', 'Gareth', true);
+match(['Arnaud', 'Kevin'], ['Zdenek', 'Frankie'], false);
+match(['Arnaud', 'Kevin'], ['Zdenek', 'Frankie'], false);
+
+match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
+match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
+match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
+match('Robert', 'Zdenek'], true);
+match('Robert', 'Zdenek'], false);
+match('Robert', 'Zdenek'], false);
 
 
 app.get('/api/ipaddress', function (req, res) {
