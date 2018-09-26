@@ -189,122 +189,129 @@ const getPlayers = () => {
 
 log(players);
 
-match('Arnaud', 'Frankie', true);
-match('Arnaud', 'Frankie', true);
-match('Arnaud', 'Frankie', true);
-match(['Zdenek', 'Frankie'], ['Robert', 'Luke'], true);
-match('Zdenek', 'Frankie', true);
-match('Zdenek', 'Frankie', true);
-match('Zdenek', 'Frankie', true);
-match(['Luke', 'Frankie'], ['Robert', 'Gareth'], false);
-match(['Luke', 'Frankie'], ['Robert', 'Gareth'], true);
-match(['Luke', 'Frankie'], ['Robert', 'Gareth'], false);
-match('Robert', 'Frankie', false);
-match(['AdamK', 'Robert'], ['Frankie', 'Jaskaran'], true);
-match('Robert', 'Frankie', false);
-match('Robert', 'Frankie', true);
-
-match(['Jaskaran', 'Robert'], ['Frankie', 'Zdenek'], true);
-match(['Jaskaran', 'Robert'], ['Frankie', 'Zdenek'], false);
-match('Jaskaran', 'Zdenek', true);
-match(['Frankie', 'Zdenek'], ['Gareth', 'AndrewN'], true);
-match(['Frankie', 'Zdenek'], ['Gareth', 'AndrewN'], false);
-match(['Frankie', 'Zdenek'], ['Gareth', 'AndrewN'], true);
-match(['Frankie', 'AndrewN'], ['Gareth', 'Zdenek'], true);
-match(['Frankie', 'AndrewN'], ['Gareth', 'Zdenek'], true);
-match('Zdenek', 'Glen', false);
-match('Arnaud', 'Glen', true);
-match('Arnaud', 'Glen', false);
-match('Gareth', 'Robert', false);
-match('Gareth', 'Robert', true);
-match('Gareth', 'Robert', true);
-match(['Jaskaran', 'Nilotpal'], ['AdamK', 'AndrewF'], true);
-match(['Jaskaran', 'Nilotpal'], ['AdamK', 'AndrewF'], false);
-match(['Jaskaran', 'Nilotpal'], ['AdamK', 'AndrewF'], true);
-match('Frankie', 'Robert', false);
-match('Frankie', 'Robert', false);
-match('Frankie', 'Robert', true);
-match('Gareth', 'Zdenek', false);
-match(['Jaskaran', 'Frankie'], ['Zdenek', 'Gareth'], true);
-match(['Jaskaran', 'Frankie'], ['Zdenek', 'Gareth'], false);
-match(['Jaskaran', 'Frankie'], ['Zdenek', 'Gareth'], true);
-
-match('Zdenek', 'Robert', true);
-match('Zdenek', 'Robert', true);
-match('Zdenek', 'Robert', false);
-match('Zdenek', 'Robert', true);
-match('Zdenek', 'Robert', true);
-match('Zdenek', 'Arnaud', false);
-match('Kevin', 'Frankie', false);
-match('Zdenek', 'Arnaud', false);
-
-match('Frankie', 'Kristina', true);
-match('Frankie', 'Kristina', false);
-match('Frankie', 'Kristina', true);
-
-match('Frankie', 'Luke', true);
-match('Frankie', 'Luke', false);
-match('Frankie', 'Luke', true);
-match('Gareth', 'Luke', true);
-match('Gareth', 'Luke', true);
-match(['Gareth', 'Zdenek'], ['Luke', 'Arnaud'], false);
-match(['Gareth', 'Arnaud'], ['Luke', 'Zdenek'], true);
-match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
-match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
-match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
-
-match(['Luke', 'Gareth'], ['Jaskaran', 'Robert'], false);
-match(['Luke', 'Gareth'], ['Jaskaran', 'Robert'], false);
-match(['Nilotpal', 'Gareth'], ['Arnaud', 'Zdenek'], true);
-match(['Nilotpal', 'Gareth'], ['Arnaud', 'Zdenek'], true);
-
-match('Martin', 'Gareth', false);
-match('Martin', 'Gareth', false);
-match(['Martin', 'AdamA'], ['Gareth', 'AndrewF'], false);
-match(['Martin', 'AdamA'], ['Gareth', 'AndrewF'], false);
-match('Zdenek', 'Gareth', true);
-match('Zdenek', 'Gareth', true);
-match('Zdenek', 'Robert', true);
-match('Zdenek', 'Robert', true);
-match('Zdenek', 'Robert', true);
-match('Zdenek', 'Robert', true);
-match('Zdenek', 'Robert', true);
-
-match('Zdenek', 'Gareth', true);
-match(['Zdenek', 'Gareth'], ['Frankie', 'Nilotpal'], false);
-match(['Jaskaran', 'Zdenek'], ['Nilotpal', 'Gareth'], true);
-match(['Jaskaran', 'Zdenek'], ['Nilotpal', 'Gareth'], false);
-match(['Jaskaran', 'Zdenek'], ['Nilotpal', 'Gareth'], true);
-match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
-match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
-match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
-match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
-match('Nilotpal', 'Gareth', true);
-
-match('Luke', 'Robert', true);
-match('Luke', 'Robert', false);
-match('Luke', 'Robert', true);
-match('Luke', 'Robert', true);
-match('Luke', 'Robert', true);
-match('Luke', 'Robert', true);
-match('Luke', 'Robert', false);
-match('Luke', 'Robert', true);
-
-match(['Robert', 'Nilotpal'], ['Luke', 'Jaskaran'], false);
-match(['Robert', 'Nilotpal'], ['Luke', 'Jaskaran'], true);
-match(['Frankie', 'AndrewF'], ['Gareth', 'Zdenek'], false);
-match(['Frankie', 'AndrewF'], ['Gareth', 'Zdenek'], true);
-match('AndrewF', 'Gareth', true);
-match('AndrewF', 'Gareth', true);
-match(['Arnaud', 'Kevin'], ['Zdenek', 'Frankie'], false);
-match(['Arnaud', 'Kevin'], ['Zdenek', 'Frankie'], false);
-
-match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
-match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
-match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
-match('Robert', 'Zdenek', true);
-match('Robert', 'Zdenek', false);
-match('Robert', 'Zdenek', false);
+// match('Arnaud', 'Frankie', true);
+// match('Arnaud', 'Frankie', true);
+// match('Arnaud', 'Frankie', true);
+// match(['Zdenek', 'Frankie'], ['Robert', 'Luke'], true);
+// match('Zdenek', 'Frankie', true);
+// match('Zdenek', 'Frankie', true);
+// match('Zdenek', 'Frankie', true);
+// match(['Luke', 'Frankie'], ['Robert', 'Gareth'], false);
+// match(['Luke', 'Frankie'], ['Robert', 'Gareth'], true);
+// match(['Luke', 'Frankie'], ['Robert', 'Gareth'], false);
+// match('Robert', 'Frankie', false);
+// match(['AdamK', 'Robert'], ['Frankie', 'Jaskaran'], true);
+// match('Robert', 'Frankie', false);
+// match('Robert', 'Frankie', true);
+//
+// match(['Jaskaran', 'Robert'], ['Frankie', 'Zdenek'], true);
+// match(['Jaskaran', 'Robert'], ['Frankie', 'Zdenek'], false);
+// match('Jaskaran', 'Zdenek', true);
+// match(['Frankie', 'Zdenek'], ['Gareth', 'AndrewN'], true);
+// match(['Frankie', 'Zdenek'], ['Gareth', 'AndrewN'], false);
+// match(['Frankie', 'Zdenek'], ['Gareth', 'AndrewN'], true);
+// match(['Frankie', 'AndrewN'], ['Gareth', 'Zdenek'], true);
+// match(['Frankie', 'AndrewN'], ['Gareth', 'Zdenek'], true);
+// match('Zdenek', 'Glen', false);
+// match('Arnaud', 'Glen', true);
+// match('Arnaud', 'Glen', false);
+// match('Gareth', 'Robert', false);
+// match('Gareth', 'Robert', true);
+// match('Gareth', 'Robert', true);
+// match(['Jaskaran', 'Nilotpal'], ['AdamK', 'AndrewF'], true);
+// match(['Jaskaran', 'Nilotpal'], ['AdamK', 'AndrewF'], false);
+// match(['Jaskaran', 'Nilotpal'], ['AdamK', 'AndrewF'], true);
+// match('Frankie', 'Robert', false);
+// match('Frankie', 'Robert', false);
+// match('Frankie', 'Robert', true);
+// match('Gareth', 'Zdenek', false);
+// match(['Jaskaran', 'Frankie'], ['Zdenek', 'Gareth'], true);
+// match(['Jaskaran', 'Frankie'], ['Zdenek', 'Gareth'], false);
+// match(['Jaskaran', 'Frankie'], ['Zdenek', 'Gareth'], true);
+//
+// match('Zdenek', 'Robert', true);
+// match('Zdenek', 'Robert', true);
+// match('Zdenek', 'Robert', false);
+// match('Zdenek', 'Robert', true);
+// match('Zdenek', 'Robert', true);
+// match('Zdenek', 'Arnaud', false);
+// match('Kevin', 'Frankie', false);
+// match('Zdenek', 'Arnaud', false);
+//
+// match('Frankie', 'Kristina', true);
+// match('Frankie', 'Kristina', false);
+// match('Frankie', 'Kristina', true);
+//
+// match('Frankie', 'Luke', true);
+// match('Frankie', 'Luke', false);
+// match('Frankie', 'Luke', true);
+// match('Gareth', 'Luke', true);
+// match('Gareth', 'Luke', true);
+// match(['Gareth', 'Zdenek'], ['Luke', 'Arnaud'], false);
+// match(['Gareth', 'Arnaud'], ['Luke', 'Zdenek'], true);
+// match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
+// match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
+// match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
+//
+// match(['Luke', 'Gareth'], ['Jaskaran', 'Robert'], false);
+// match(['Luke', 'Gareth'], ['Jaskaran', 'Robert'], false);
+// match(['Nilotpal', 'Gareth'], ['Arnaud', 'Zdenek'], true);
+// match(['Nilotpal', 'Gareth'], ['Arnaud', 'Zdenek'], true);
+//
+// match('Martin', 'Gareth', false);
+// match('Martin', 'Gareth', false);
+// match(['Martin', 'AdamA'], ['Gareth', 'AndrewF'], false);
+// match(['Martin', 'AdamA'], ['Gareth', 'AndrewF'], false);
+// match('Zdenek', 'Gareth', true);
+// match('Zdenek', 'Gareth', true);
+// match('Zdenek', 'Robert', true);
+// match('Zdenek', 'Robert', true);
+// match('Zdenek', 'Robert', true);
+// match('Zdenek', 'Robert', true);
+// match('Zdenek', 'Robert', true);
+//
+// match('Zdenek', 'Gareth', true);
+// match(['Zdenek', 'Gareth'], ['Frankie', 'Nilotpal'], false);
+// match(['Jaskaran', 'Zdenek'], ['Nilotpal', 'Gareth'], true);
+// match(['Jaskaran', 'Zdenek'], ['Nilotpal', 'Gareth'], false);
+// match(['Jaskaran', 'Zdenek'], ['Nilotpal', 'Gareth'], true);
+// match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
+// match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
+// match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], true);
+// match(['Frankie', 'Arnaud'], ['Kevin', 'Zdenek'], false);
+// match('Nilotpal', 'Gareth', true);
+//
+// match('Luke', 'Robert', true);
+// match('Luke', 'Robert', false);
+// match('Luke', 'Robert', true);
+// match('Luke', 'Robert', true);
+// match('Luke', 'Robert', true);
+// match('Luke', 'Robert', true);
+// match('Luke', 'Robert', false);
+// match('Luke', 'Robert', true);
+//
+// match(['Robert', 'Nilotpal'], ['Luke', 'Jaskaran'], false);
+// match(['Robert', 'Nilotpal'], ['Luke', 'Jaskaran'], true);
+// match(['Frankie', 'AndrewF'], ['Gareth', 'Zdenek'], false);
+// match(['Frankie', 'AndrewF'], ['Gareth', 'Zdenek'], true);
+// match('AndrewF', 'Gareth', true);
+// match('AndrewF', 'Gareth', true);
+// match(['Arnaud', 'Kevin'], ['Zdenek', 'Frankie'], false);
+// match(['Arnaud', 'Kevin'], ['Zdenek', 'Frankie'], false);
+//
+// match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
+// match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
+// match(['Nilotpal', 'Robert'], ['Zdenek', 'Jaskaran'], false);
+// match('Robert', 'Zdenek', true);
+// match('Robert', 'Zdenek', false);
+// match('Robert', 'Zdenek', false);
+//
+// match(['Arnaud', 'Kevin'], ['Zdenek', 'Frankie'], true);
+// match(['Arnaud', 'Kevin'], ['Zdenek', 'Frankie'], true);
+//
+// match('Gareth', 'Zdenek', true);
+// match('Gareth', 'Zdenek', false);
+// match('Gareth', 'Zdenek', false);
 
 
 app.get('/api/ipaddress', function (req, res) {
